@@ -1,0 +1,23 @@
+<header class="header" id="title">
+    <div class="container">
+        <h1>סיכום חודש {{employees.month}}</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="report-container">
+            <div ng-repeat="employee in employees">
+                <div class="report-id">{{employee.id}}</div>
+                <table>
+                    <tr class="dayRow" ng-repeat="day in employee.data">
+                        <td class="outTime">{{getTime(day.out)}}</td>
+                        <td class="inTime">{{getTime(day.in)}}</td>
+                        <td class="day">{{day.day}}</td>
+                        <!--<td class="dayTotal">{{getTotal(day.in, day.out)}}</td>-->
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

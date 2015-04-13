@@ -1,0 +1,23 @@
+<!--<div ng-include="'components/navbar/navbar.html'"></div>-->
+
+<header class="header" id="title">
+  <div class="container">
+    <h1>גן תומר - מערכת שעות</h1>
+  </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="sign-form">
+            <div class="id-title">תעודת זהות</div>
+            <input type="text" ng-model="id" maxlength="9">
+            <div class="buttons">
+                <div class="button" ng-click="sign('in')">IN</div>
+                <div class="button" ng-click="sign('out')">OUT</div>
+            </div>
+        </div>
+        <div class="error" ng-show="errorMsg != ''">
+            {{errorMsg}}
+        </div>
+    </div>
+</div>

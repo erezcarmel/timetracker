@@ -1,0 +1,54 @@
+#title {
+  border-bottom: none;
+  margin-top: -20px;
+
+  h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+}
+
+.report-container {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+    .report-id {
+        font-size: 20px;
+        float: right;
+    }
+
+    table {
+        font-size: 16px;
+        margin-bottom: 20px;
+        border: 1px solid #E4E4E4;
+
+        tr {
+            height: 50px;
+            td {
+                padding: 10px;
+
+                &.day {
+                  width: 50px;
+                  font-size: 20px;
+                  font-weight: bold;
+                }
+
+                &.inTime, &.outTime, &.dayTotal {
+                  width: 100px;
+                  font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+.header {
+  position: relative;
+  color: #F5F5F5;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: #4393B9;
+}

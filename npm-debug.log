@@ -1,0 +1,348 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/Users/erezcarmel/Projects/timetracker',
+5 verbose install   [ 'express',
+5 verbose install     'morgan',
+5 verbose install     'body-parser',
+5 verbose install     'method-override',
+5 verbose install     'serve-favicon',
+5 verbose install     'cookie-parser',
+5 verbose install     'express-session',
+5 verbose install     'errorhandler',
+5 verbose install     'compression',
+5 verbose install     'lodash',
+5 verbose install     'ejs',
+5 verbose install     'composable-middleware',
+5 verbose install     'connect-mongo',
+5 verbose install     'request',
+5 verbose install     'grunt',
+5 verbose install     'grunt-autoprefixer',
+5 verbose install     'grunt-wiredep',
+5 verbose install     'grunt-concurrent',
+5 verbose install     'grunt-contrib-clean',
+5 verbose install     'grunt-contrib-concat',
+5 verbose install     'grunt-contrib-copy',
+5 verbose install     'grunt-contrib-cssmin',
+5 verbose install     'grunt-contrib-htmlmin',
+5 verbose install     'grunt-contrib-imagemin',
+5 verbose install     'grunt-contrib-jshint',
+5 verbose install     'grunt-contrib-uglify',
+5 verbose install     'grunt-contrib-watch',
+5 verbose install     'grunt-google-cdn',
+5 verbose install     'grunt-newer',
+5 verbose install     'grunt-ng-annotate',
+5 verbose install     'grunt-rev',
+5 verbose install     'grunt-svgmin',
+5 verbose install     'grunt-usemin',
+5 verbose install     'grunt-env',
+5 verbose install     'grunt-node-inspector',
+5 verbose install     'grunt-nodemon',
+5 verbose install     'grunt-angular-templates',
+5 verbose install     'grunt-dom-munger',
+5 verbose install     'grunt-protractor-runner',
+5 verbose install     'grunt-asset-injector',
+5 verbose install     'grunt-karma',
+5 verbose install     'grunt-build-control',
+5 verbose install     'grunt-mocha-test',
+5 verbose install     'grunt-contrib-sass',
+5 verbose install     'jit-grunt',
+5 verbose install     'time-grunt',
+5 verbose install     'grunt-express-server',
+5 verbose install     'grunt-open',
+5 verbose install     'open',
+5 verbose install     'jshint-stylish',
+5 verbose install     'connect-livereload',
+5 verbose install     'karma-ng-scenario',
+5 verbose install     'karma-firefox-launcher',
+5 verbose install     'karma-script-launcher',
+5 verbose install     'karma-html2js-preprocessor',
+5 verbose install     'karma-ng-jade2js-preprocessor',
+5 verbose install     'karma-jasmine',
+5 verbose install     'karma-chrome-launcher',
+5 verbose install     'requirejs',
+5 verbose install     'karma-requirejs',
+5 verbose install     'karma-coffee-preprocessor',
+5 verbose install     'karma-jade-preprocessor',
+5 verbose install     'karma-phantomjs-launcher',
+5 verbose install     'karma',
+5 verbose install     'karma-ng-html2js-preprocessor',
+5 verbose install     'supertest',
+5 verbose install     'should' ] ]
+6 info preinstall timetracker@0.0.0
+7 warn package.json karma-coffee-preprocessor@0.2.1 No README data
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping composable-middleware@^0.3.0 /Users/erezcarmel/Projects/timetracker
+10 verbose already installed skipping connect-mongo@^0.4.1 /Users/erezcarmel/Projects/timetracker
+11 verbose cache add [ 'request@^2.51.0', null ]
+12 verbose cache add name=undefined spec="request@^2.51.0" args=["request@^2.51.0",null]
+13 verbose parsed url { protocol: null,
+13 verbose parsed url   slashes: null,
+13 verbose parsed url   auth: null,
+13 verbose parsed url   host: null,
+13 verbose parsed url   port: null,
+13 verbose parsed url   hostname: null,
+13 verbose parsed url   hash: null,
+13 verbose parsed url   search: null,
+13 verbose parsed url   query: null,
+13 verbose parsed url   pathname: 'request@^2.51.0',
+13 verbose parsed url   path: 'request@^2.51.0',
+13 verbose parsed url   href: 'request@^2.51.0' }
+14 verbose already installed skipping grunt@~0.4.4 /Users/erezcarmel/Projects/timetracker
+15 verbose cache add name="request" spec="^2.51.0" args=["request","^2.51.0"]
+16 verbose parsed url { protocol: null,
+16 verbose parsed url   slashes: null,
+16 verbose parsed url   auth: null,
+16 verbose parsed url   host: null,
+16 verbose parsed url   port: null,
+16 verbose parsed url   hostname: null,
+16 verbose parsed url   hash: null,
+16 verbose parsed url   search: null,
+16 verbose parsed url   query: null,
+16 verbose parsed url   pathname: '^2.51.0',
+16 verbose parsed url   path: '^2.51.0',
+16 verbose parsed url   href: '^2.51.0' }
+17 verbose addNamed [ 'request', '^2.51.0' ]
+18 verbose addNamed [ null, '>=2.51.0-0 <3.0.0-0' ]
+19 verbose already installed skipping grunt-autoprefixer@~0.7.2 /Users/erezcarmel/Projects/timetracker
+20 verbose already installed skipping grunt-wiredep@~1.8.0 /Users/erezcarmel/Projects/timetracker
+21 silly lockFile 760a03cb-request-2-51-0 request@^2.51.0
+22 verbose lock request@^2.51.0 /Users/erezcarmel/.npm/760a03cb-request-2-51-0.lock
+23 verbose already installed skipping grunt-concurrent@~0.5.0 /Users/erezcarmel/Projects/timetracker
+24 silly addNameRange { name: 'request', range: '>=2.51.0-0 <3.0.0-0', hasData: false }
+25 verbose already installed skipping grunt-contrib-clean@~0.5.0 /Users/erezcarmel/Projects/timetracker
+26 verbose already installed skipping grunt-contrib-concat@~0.4.0 /Users/erezcarmel/Projects/timetracker
+27 verbose already installed skipping grunt-contrib-copy@~0.5.0 /Users/erezcarmel/Projects/timetracker
+28 verbose request where is /request
+29 verbose request registry https://registry.npmjs.org/
+30 verbose request id 98dc794fea7bb74c
+31 verbose url raw /request
+32 verbose url resolving [ 'https://registry.npmjs.org/', './request' ]
+33 verbose url resolved https://registry.npmjs.org/request
+34 verbose request where is https://registry.npmjs.org/request
+35 info trying registry request attempt 1 at 22:58:25
+36 verbose etag "EYRCPHK8WX9HI8A4U1Z6I3ANV"
+37 http GET https://registry.npmjs.org/request
+38 verbose already installed skipping grunt-contrib-cssmin@~0.9.0 /Users/erezcarmel/Projects/timetracker
+39 verbose already installed skipping grunt-contrib-htmlmin@~0.2.0 /Users/erezcarmel/Projects/timetracker
+40 verbose already installed skipping grunt-contrib-imagemin@~0.7.1 /Users/erezcarmel/Projects/timetracker
+41 verbose already installed skipping grunt-contrib-jshint@~0.10.0 /Users/erezcarmel/Projects/timetracker
+42 verbose already installed skipping grunt-contrib-uglify@~0.4.0 /Users/erezcarmel/Projects/timetracker
+43 verbose already installed skipping grunt-contrib-watch@~0.6.1 /Users/erezcarmel/Projects/timetracker
+44 verbose already installed skipping grunt-google-cdn@~0.4.0 /Users/erezcarmel/Projects/timetracker
+45 verbose already installed skipping grunt-newer@~0.7.0 /Users/erezcarmel/Projects/timetracker
+46 verbose already installed skipping grunt-ng-annotate@^0.2.3 /Users/erezcarmel/Projects/timetracker
+47 verbose already installed skipping grunt-rev@~0.1.0 /Users/erezcarmel/Projects/timetracker
+48 verbose already installed skipping grunt-svgmin@~0.4.0 /Users/erezcarmel/Projects/timetracker
+49 verbose already installed skipping grunt-usemin@~2.1.1 /Users/erezcarmel/Projects/timetracker
+50 verbose already installed skipping grunt-env@~0.4.1 /Users/erezcarmel/Projects/timetracker
+51 verbose already installed skipping grunt-node-inspector@~0.1.5 /Users/erezcarmel/Projects/timetracker
+52 verbose already installed skipping grunt-nodemon@~0.2.0 /Users/erezcarmel/Projects/timetracker
+53 verbose already installed skipping grunt-angular-templates@^0.5.4 /Users/erezcarmel/Projects/timetracker
+54 verbose already installed skipping grunt-dom-munger@^3.4.0 /Users/erezcarmel/Projects/timetracker
+55 verbose already installed skipping grunt-protractor-runner@^1.1.0 /Users/erezcarmel/Projects/timetracker
+56 verbose already installed skipping grunt-asset-injector@^0.1.0 /Users/erezcarmel/Projects/timetracker
+57 verbose already installed skipping grunt-karma@~0.8.2 /Users/erezcarmel/Projects/timetracker
+58 verbose cache add [ 'grunt-build-control@git+https://github.com/DaftMonk/grunt-build-control',
+58 verbose cache add   null ]
+59 verbose cache add name=undefined spec="grunt-build-control@git+https://github.com/DaftMonk/grunt-build-control" args=["grunt-build-control@git+https://github.com/DaftMonk/grunt-build-control",null]
+60 verbose parsed url { protocol: null,
+60 verbose parsed url   slashes: null,
+60 verbose parsed url   auth: null,
+60 verbose parsed url   host: null,
+60 verbose parsed url   port: null,
+60 verbose parsed url   hostname: null,
+60 verbose parsed url   hash: null,
+60 verbose parsed url   search: null,
+60 verbose parsed url   query: null,
+60 verbose parsed url   pathname: 'grunt-build-control@git+https://github.com/DaftMonk/grunt-build-control',
+60 verbose parsed url   path: 'grunt-build-control@git+https://github.com/DaftMonk/grunt-build-control',
+60 verbose parsed url   href: 'grunt-build-control@git+https://github.com/DaftMonk/grunt-build-control' }
+61 verbose already installed skipping grunt-mocha-test@~0.10.2 /Users/erezcarmel/Projects/timetracker
+62 verbose already installed skipping grunt-contrib-sass@^0.7.3 /Users/erezcarmel/Projects/timetracker
+63 verbose already installed skipping jit-grunt@^0.5.0 /Users/erezcarmel/Projects/timetracker
+64 verbose already installed skipping time-grunt@~0.3.1 /Users/erezcarmel/Projects/timetracker
+65 verbose already installed skipping grunt-express-server@~0.4.17 /Users/erezcarmel/Projects/timetracker
+66 verbose already installed skipping grunt-open@~0.2.3 /Users/erezcarmel/Projects/timetracker
+67 verbose already installed skipping open@~0.0.4 /Users/erezcarmel/Projects/timetracker
+68 verbose cache add name="grunt-build-control" spec="git+https://github.com/DaftMonk/grunt-build-control" args=["grunt-build-control","git+https://github.com/DaftMonk/grunt-build-control"]
+69 verbose parsed url { protocol: 'git+https:',
+69 verbose parsed url   slashes: true,
+69 verbose parsed url   auth: null,
+69 verbose parsed url   host: 'github.com',
+69 verbose parsed url   port: null,
+69 verbose parsed url   hostname: 'github.com',
+69 verbose parsed url   hash: null,
+69 verbose parsed url   search: null,
+69 verbose parsed url   query: null,
+69 verbose parsed url   pathname: '/DaftMonk/grunt-build-control',
+69 verbose parsed url   path: '/DaftMonk/grunt-build-control',
+69 verbose parsed url   href: 'git+https://github.com/DaftMonk/grunt-build-control' }
+70 silly lockFile 7e4d577b-com-DaftMonk-grunt-build-control https://github.com/DaftMonk/grunt-build-control
+71 verbose lock https://github.com/DaftMonk/grunt-build-control /Users/erezcarmel/.npm/7e4d577b-com-DaftMonk-grunt-build-control.lock
+72 verbose already installed skipping jshint-stylish@~0.1.5 /Users/erezcarmel/Projects/timetracker
+73 verbose already installed skipping connect-livereload@~0.4.0 /Users/erezcarmel/Projects/timetracker
+74 verbose addRemoteGit [ 'https://github.com/DaftMonk/grunt-build-control', 'master' ]
+75 verbose already installed skipping karma-ng-scenario@~0.1.0 /Users/erezcarmel/Projects/timetracker
+76 verbose already installed skipping karma-firefox-launcher@~0.1.3 /Users/erezcarmel/Projects/timetracker
+77 verbose already installed skipping karma-script-launcher@~0.1.0 /Users/erezcarmel/Projects/timetracker
+78 verbose already installed skipping karma-html2js-preprocessor@~0.1.0 /Users/erezcarmel/Projects/timetracker
+79 verbose already installed skipping karma-ng-jade2js-preprocessor@^0.1.2 /Users/erezcarmel/Projects/timetracker
+80 verbose already installed skipping karma-jasmine@~0.1.5 /Users/erezcarmel/Projects/timetracker
+81 verbose already installed skipping karma-chrome-launcher@~0.1.3 /Users/erezcarmel/Projects/timetracker
+82 verbose already installed skipping requirejs@~2.1.11 /Users/erezcarmel/Projects/timetracker
+83 verbose already installed skipping karma-requirejs@~0.2.1 /Users/erezcarmel/Projects/timetracker
+84 verbose already installed skipping karma-coffee-preprocessor@~0.2.1 /Users/erezcarmel/Projects/timetracker
+85 verbose already installed skipping karma-jade-preprocessor@0.0.11 /Users/erezcarmel/Projects/timetracker
+86 verbose already installed skipping karma-phantomjs-launcher@~0.1.4 /Users/erezcarmel/Projects/timetracker
+87 verbose already installed skipping karma@~0.12.9 /Users/erezcarmel/Projects/timetracker
+88 verbose already installed skipping karma-ng-html2js-preprocessor@~0.1.0 /Users/erezcarmel/Projects/timetracker
+89 verbose already installed skipping supertest@~0.11.0 /Users/erezcarmel/Projects/timetracker
+90 verbose already installed skipping should@~3.3.1 /Users/erezcarmel/Projects/timetracker
+91 verbose already installed skipping express@~4.0.0 /Users/erezcarmel/Projects/timetracker
+92 verbose already installed skipping morgan@~1.0.0 /Users/erezcarmel/Projects/timetracker
+93 verbose already installed skipping body-parser@~1.5.0 /Users/erezcarmel/Projects/timetracker
+94 verbose already installed skipping method-override@~1.0.0 /Users/erezcarmel/Projects/timetracker
+95 verbose git remote.origin.url https://github.com/DaftMonk/grunt-build-control
+96 verbose already installed skipping serve-favicon@~2.0.1 /Users/erezcarmel/Projects/timetracker
+97 verbose already installed skipping cookie-parser@~1.0.1 /Users/erezcarmel/Projects/timetracker
+98 verbose already installed skipping express-session@~1.0.2 /Users/erezcarmel/Projects/timetracker
+99 verbose already installed skipping errorhandler@~1.0.0 /Users/erezcarmel/Projects/timetracker
+100 verbose already installed skipping compression@~1.0.1 /Users/erezcarmel/Projects/timetracker
+101 verbose already installed skipping lodash@~2.4.1 /Users/erezcarmel/Projects/timetracker
+102 verbose already installed skipping ejs@~0.8.4 /Users/erezcarmel/Projects/timetracker
+103 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+104 error git fetch -a origin (https://github.com/DaftMonk/grunt-build-control) fatal: unable to access 'https://github.com/DaftMonk/grunt-build-control/': Could not resolve host: github.com
+105 silly lockFile 7e4d577b-com-DaftMonk-grunt-build-control https://github.com/DaftMonk/grunt-build-control
+106 silly lockFile 7e4d577b-com-DaftMonk-grunt-build-control https://github.com/DaftMonk/grunt-build-control
+107 info trying registry request attempt 2 at 22:59:10
+108 verbose etag "EYRCPHK8WX9HI8A4U1Z6I3ANV"
+109 http GET https://registry.npmjs.org/request
+110 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+111 info trying registry request attempt 3 at 23:00:45
+112 verbose etag "EYRCPHK8WX9HI8A4U1Z6I3ANV"
+113 http GET https://registry.npmjs.org/request
+114 silly registry.get cb [ 304, undefined ]
+115 verbose etag https://registry.npmjs.org/request from cache
+116 silly addNameRange number 2 { name: 'request', range: '>=2.51.0-0 <3.0.0-0', hasData: true }
+117 silly addNameRange versions [ 'request',
+117 silly addNameRange   [ '0.10.0',
+117 silly addNameRange     '0.8.3',
+117 silly addNameRange     '0.9.0',
+117 silly addNameRange     '0.9.1',
+117 silly addNameRange     '0.9.5',
+117 silly addNameRange     '1.0.0',
+117 silly addNameRange     '1.1.0',
+117 silly addNameRange     '1.1.1',
+117 silly addNameRange     '1.2.0',
+117 silly addNameRange     '1.9.0',
+117 silly addNameRange     '1.9.1',
+117 silly addNameRange     '1.9.2',
+117 silly addNameRange     '1.9.3',
+117 silly addNameRange     '1.9.5',
+117 silly addNameRange     '1.9.7',
+117 silly addNameRange     '1.9.8',
+117 silly addNameRange     '1.9.9',
+117 silly addNameRange     '2.0.0',
+117 silly addNameRange     '2.0.1',
+117 silly addNameRange     '2.0.2',
+117 silly addNameRange     '2.0.3',
+117 silly addNameRange     '2.0.4',
+117 silly addNameRange     '2.0.5',
+117 silly addNameRange     '2.1.0',
+117 silly addNameRange     '2.1.1',
+117 silly addNameRange     '2.2.0',
+117 silly addNameRange     '2.2.5',
+117 silly addNameRange     '2.2.6',
+117 silly addNameRange     '2.2.9',
+117 silly addNameRange     '2.9.0',
+117 silly addNameRange     '2.9.1',
+117 silly addNameRange     '2.9.2',
+117 silly addNameRange     '2.9.3',
+117 silly addNameRange     '2.9.100',
+117 silly addNameRange     '2.9.150',
+117 silly addNameRange     '2.9.151',
+117 silly addNameRange     '2.9.152',
+117 silly addNameRange     '2.9.153',
+117 silly addNameRange     '2.9.200',
+117 silly addNameRange     '2.9.201',
+117 silly addNameRange     '2.9.202',
+117 silly addNameRange     '2.9.203',
+117 silly addNameRange     '2.10.0',
+117 silly addNameRange     '2.11.0',
+117 silly addNameRange     '2.11.1',
+117 silly addNameRange     '2.11.2',
+117 silly addNameRange     '2.11.3',
+117 silly addNameRange     '2.11.4',
+117 silly addNameRange     '2.12.0',
+117 silly addNameRange     '2.14.0',
+117 silly addNameRange     '2.16.0',
+117 silly addNameRange     '2.16.2',
+117 silly addNameRange     '2.16.4',
+117 silly addNameRange     '2.16.6',
+117 silly addNameRange     '2.18.0',
+117 silly addNameRange     '2.19.0',
+117 silly addNameRange     '2.20.0',
+117 silly addNameRange     '2.21.0',
+117 silly addNameRange     '2.22.0',
+117 silly addNameRange     '2.23.0',
+117 silly addNameRange     '2.24.0',
+117 silly addNameRange     '2.25.0',
+117 silly addNameRange     '2.26.0',
+117 silly addNameRange     '2.27.0',
+117 silly addNameRange     '2.28.0',
+117 silly addNameRange     '2.29.0',
+117 silly addNameRange     '2.30.0',
+117 silly addNameRange     '2.31.0',
+117 silly addNameRange     '2.32.0',
+117 silly addNameRange     '2.33.0',
+117 silly addNameRange     '2.34.0',
+117 silly addNameRange     '2.35.0',
+117 silly addNameRange     '2.36.0',
+117 silly addNameRange     '2.37.0',
+117 silly addNameRange     '2.38.0',
+117 silly addNameRange     '2.39.0',
+117 silly addNameRange     '2.40.0',
+117 silly addNameRange     '2.41.0',
+117 silly addNameRange     '2.42.0',
+117 silly addNameRange     '2.43.0',
+117 silly addNameRange     '2.44.0',
+117 silly addNameRange     '2.45.0',
+117 silly addNameRange     '2.46.0',
+117 silly addNameRange     '2.47.0',
+117 silly addNameRange     '2.48.0',
+117 silly addNameRange     '2.49.0',
+117 silly addNameRange     '2.50.0',
+117 silly addNameRange     '2.51.0',
+117 silly addNameRange     '2.52.0',
+117 silly addNameRange     '2.53.0',
+117 silly addNameRange     '2.54.0',
+117 silly addNameRange     '2.55.0' ] ]
+118 verbose addNamed [ 'request', '2.55.0' ]
+119 verbose addNamed [ '2.55.0', '2.55.0' ]
+120 silly lockFile d17afc53-request-2-55-0 request@2.55.0
+121 verbose lock request@2.55.0 /Users/erezcarmel/.npm/d17afc53-request-2-55-0.lock
+122 silly lockFile d17afc53-request-2-55-0 request@2.55.0
+123 silly lockFile d17afc53-request-2-55-0 request@2.55.0
+124 silly lockFile 760a03cb-request-2-51-0 request@^2.51.0
+125 silly lockFile 760a03cb-request-2-51-0 request@^2.51.0
+126 error Error: Command failed: fatal: unable to access 'https://github.com/DaftMonk/grunt-build-control/': Could not resolve host: github.com
+126 error
+126 error     at ChildProcess.exithandler (child_process.js:658:15)
+126 error     at ChildProcess.emit (events.js:98:17)
+126 error     at maybeClose (child_process.js:766:16)
+126 error     at Socket.<anonymous> (child_process.js:979:11)
+126 error     at Socket.emit (events.js:95:17)
+126 error     at Pipe.close (net.js:466:12)
+127 error If you need help, you may report this *entire* log,
+127 error including the npm and node versions, at:
+127 error     <http://github.com/npm/npm/issues>
+128 error System Darwin 14.1.0
+129 error command "node" "/usr/local/bin/npm" "install"
+130 error cwd /Users/erezcarmel/Projects/timetracker
+131 error node -v v0.10.35
+132 error npm -v 1.4.28
+133 error code 128
+134 verbose exit [ 1, true ]
