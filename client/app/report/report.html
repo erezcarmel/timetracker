@@ -10,10 +10,10 @@
             <div class="report-id">{{employee.id}}</div>
             <table>
                 <tr class="dayRow" ng-repeat="day in employee.data">
+                    <td class="dayTotal">{{getTotal(day.in, day.out)}}</td>
                     <td class="outTime">{{getTime(day.out)}}</td>
                     <td class="inTime">{{getTime(day.in)}}</td>
                     <td class="day">{{day.day}}</td>
-                    <!--<td class="dayTotal">{{getTotal(day.in, day.out)}}</td>-->
                 </tr>
             </table>
         </div>
