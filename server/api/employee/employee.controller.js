@@ -86,9 +86,7 @@ function _updateData(reqData) {
     var day = new Date(parseInt(reqData.time)).getDate();
 
     if (!employeesData[reqData.id].data[day]) {
-        employeesData[reqData.id].data[day] = {
-            day: day
-        };
+        employeesData[reqData.id].data[day] = {};
     }
     employeesData[reqData.id].data[day][reqData.state] = parseInt(reqData.time);
 

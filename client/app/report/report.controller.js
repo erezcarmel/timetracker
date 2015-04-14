@@ -2,10 +2,16 @@
 
 angular.module('timetrackerApp')
     .controller('ReportCtrl', function ($scope, $http, $location) {
+        $scope.monthTotal = 0;
+
         $http.get('/api/employees/' + $location.search()['id']).success(function(employee) {
             $scope.month = employee.month;
             $scope.employee = employee.data;
         });
+
+        $scope.getDay = function(timestamp) {
+            return new Date(parseInt(timestamp)).getDate();
+        };
 
         $scope.getTime = function(timestamp) {
             var hours = new Date(parseInt(timestamp)).getHours();
@@ -21,8 +27,9 @@ angular.module('timetrackerApp')
             return  hours + ':' + minutes;
         };
 
-        $scope.getTotal = function(timeIn, timeOut) {
-            return  diff(timeIn, timeOut);
+        $scope.getDayTotal = function(timeIn, timeOut) {
+//            $scope.monthTotal += timeOut - timeIn;
+            return diff(timeIn, timeOut);
         };
 
         function diff(timeIn, timeOut) {
