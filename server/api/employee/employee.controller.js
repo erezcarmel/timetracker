@@ -64,7 +64,10 @@ exports.update = function(req, res) {
 };
 
 exports.get = function(req, res) {
-    console.log('get');
+    return res.json(200, {
+        data: employeesData[req.url.substr(1)],
+        month: employeesData.month
+    });
 };
 
 function _createJSON() {
@@ -95,7 +98,7 @@ function _updateData(reqData) {
 function _writeJSON() {
     console.log('writing', JSON.stringify(employeesData));
     fs.writeFile(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', JSON.stringify(employeesData), function(err) {
-        if(err) {
+        if (err) {
             return false;
         }
         return true;

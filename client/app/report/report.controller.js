@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('timetrackerApp')
-    .controller('ReportCtrl', function ($scope, $http) {
-        $http.get('/api/employees').success(function(employees) {
-            $scope.employees = employees;
+    .controller('ReportCtrl', function ($scope, $http, $location) {
+        $http.get('/api/employees/' + $location.search()['id']).success(function(employee) {
+            $scope.month = employee.month;
+            $scope.employee = employee.data;
         });
 
         $scope.getTime = function(timestamp) {
