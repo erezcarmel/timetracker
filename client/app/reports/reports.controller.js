@@ -9,4 +9,8 @@ angular.module('timetrackerApp')
         $scope.showEmployee = function(id) {
             $location.url('/report?id=' + id);
         };
+
+        $scope.saveFiles = function() {
+            console.log('saveFiles');
+        };
     });

@@ -32,6 +32,10 @@ angular.module('timetrackerApp')
             return diff(timeIn, timeOut);
         };
 
+        $scope.saveFile = function(id) {
+            console.log(id);
+        };
+
         function diff(timeIn, timeOut) {
             var startDate = new Date(timeIn);
             var endDate = new Date(timeOut);
