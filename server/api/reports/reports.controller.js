@@ -5,27 +5,31 @@ var fs = require('fs');
 var excelbuilder = require('msexcel-builder');
 
 var employeesData;
-var logsPath = '/Users/erezcarmel/Desktop/';
+var reportsPath = '/Users/erezcarmel/Desktop/reports/';
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
 exports.create = function(req, res) {
     loadData(function() {
-        createReport(req.url.substr(1))
+        createReportsFolder(function() {
+            createReport(req.url.substr(1));
+        });
     });
 };
 
 exports.createAll = function(req, res) {
     loadData(function() {
-        createAll()
+        createReportsFolder(function() {
+            createAll();
+        });
     });
 };
 
 function loadData(callback) {
-    fs.exists(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
+    fs.exists(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             console.log('file not found!');
         } else {
-            fs.readFile(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }
@@ -37,7 +41,7 @@ function loadData(callback) {
 }
 
 function createReport(id) {
-    var workbook = excelbuilder.createWorkbook('/Users/erezcarmel/Desktop/reports/', id + '.xlsx');
+    var workbook = excelbuilder.createWorkbook(reportsPath + months[new Date().getMonth()], id + '.xlsx');
     var sheet1 = workbook.createSheet(id, 4, 40);
     var row = 3;
 
@@ -149,5 +153,23 @@ function calcMonthTotal(data) {
             monthTotal += data[day].total;
         }
     }
-    return parseInt(monthTotal / (1000*60*60)) + ':' + parseInt(monthTotal / (1000*60)%60);
+    var minutes = parseInt(monthTotal / (1000*60)%60)
+        , hours = parseInt(monthTotal / (1000*60*60));
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+
+    return hours + ':' + minutes;
+}
+
+function createReportsFolder(callback) {
+    fs.exists(reportsPath + months[new Date().getMonth()], function (exists){
+        if (!exists) {
+            fs.mkdir(reportsPath + months[new Date().getMonth()], function(err, res) {
+                callback()
+            });
+        } else {
+            callback();
+        }
+    });
 }

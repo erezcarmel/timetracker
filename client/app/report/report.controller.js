@@ -44,7 +44,14 @@ angular.module('timetrackerApp')
                 for (var day in data) {
                     $scope.monthTotal += data[day].total;
                 }
-                $scope.monthTotal = parseInt($scope.monthTotal / (1000*60*60)) + ':' + parseInt($scope.monthTotal / (1000*60)%60);
+
+                var minutes = parseInt($scope.monthTotal / (1000*60)%60)
+                    , hours = parseInt($scope.monthTotal / (1000*60*60));
+
+                hours = (hours < 10) ? "0" + hours : hours;
+                minutes = (minutes < 10) ? "0" + minutes : minutes;
+
+                $scope.monthTotal = hours + ':' + minutes;
             }
         }
 
