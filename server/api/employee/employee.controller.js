@@ -43,7 +43,9 @@ exports.update = function(req, res) {
     fs.exists(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             _createJSON();
-            _updateData(reqData, null);
+            _updateData(reqData, function() {
+                console.log('JSON created');
+            });
         } else {
             fs.readFile(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
@@ -98,6 +100,10 @@ function _updateData(reqData, callback) {
         employeesData[reqData.id].data[day] = {};
     }
     employeesData[reqData.id].data[day][reqData.state] = parseInt(reqData.time);
+
+    if (employeesData[reqData.id].data[day].in && employeesData[reqData.id].data[day].out) {
+        employeesData[reqData.id].data[day].total = employeesData[reqData.id].data[day].out - employeesData[reqData.id].data[day].in;
+    }
 
     _writeJSON(callback);
 }

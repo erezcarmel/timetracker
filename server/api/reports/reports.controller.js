@@ -92,7 +92,7 @@ function createReport(id) {
     }
     sheet1.align(1, row, 'center');
     sheet1.font(1, row, {sz:'18', family:'3', bold:'true'});
-    sheet1.set(1, row, 0);
+    sheet1.set(1, row, calcMonthTotal(employeesData[id].data));
     sheet1.font(2, row, {sz:'18', family:'3', bold:'true', iter:'true'});
     sheet1.set(2, row, 'סהכ');
 
@@ -103,7 +103,6 @@ function createReport(id) {
             console.log('workbook created');
         }
     });
-
 }
 
 function createAll() {
@@ -141,4 +140,14 @@ function getDayTotal(timeIn, timeOut) {
     }
 
     return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+}
+
+function calcMonthTotal(data) {
+    var monthTotal = 0;
+    if (data) {
+        for (var day in data) {
+            monthTotal += data[day].total;
+        }
+    }
+    return parseInt(monthTotal / (1000*60*60)) + ':' + parseInt(monthTotal / (1000*60)%60);
 }

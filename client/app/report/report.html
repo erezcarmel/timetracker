@@ -10,11 +10,11 @@
             <div class="saveBtn" ng-click="createReport(employee.id)">שמור לקובץ</div>
             <div class="report-id">{{employee.id}}</div>
             <table>
-                <tr class="dayRow" ng-repeat="day in employee.data">
-                    <td class="dayTotal">{{getDayTotal(day.in, day.out)}}</td>
-                    <td class="outTime">{{getTime(day.out)}}</td>
-                    <td class="inTime">{{getTime(day.in)}}</td>
-                    <td class="day">{{getDay(day.in)}}</td>
+                <tr class="dayRow" ng-repeat="(day, data) in employee.data">
+                    <td class="dayTotal">{{getTotal(data.total)}}</td>
+                    <td class="outTime">{{getTime(data.out)}}</td>
+                    <td class="inTime">{{getTime(data.in)}}</td>
+                    <td class="day">{{day}}</td>
                 </tr>
                 <tr>
                     <td class="monthTotal">{{monthTotal}}</td>

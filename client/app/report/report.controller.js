@@ -7,6 +7,7 @@ angular.module('timetrackerApp')
         $http.get('/api/employees/' + $location.search()['id']).success(function(employee) {
             $scope.month = employee.month;
             $scope.employee = employee.data;
+            calcMonthTotal($scope.employee.data);
         });
 
         $scope.getDay = function(timestamp) {
@@ -27,29 +28,29 @@ angular.module('timetrackerApp')
             return  hours + ':' + minutes;
         };
 
-        $scope.getDayTotal = function(timeIn, timeOut) {
-//            $scope.monthTotal += timeOut - timeIn;
-            return diff(timeIn, timeOut);
+        $scope.getTotal = function(duration) {
+            var minutes = parseInt((duration/(1000*60))%60)
+                , hours = parseInt((duration/(1000*60*60))%24);
+
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+
+            return hours + ":" + minutes;
         };
+
+        function calcMonthTotal(data) {
+            $scope.monthTotal = 0;
+            if (data) {
+                for (var day in data) {
+                    $scope.monthTotal += data[day].total;
+                }
+                $scope.monthTotal = parseInt($scope.monthTotal / (1000*60*60)) + ':' + parseInt($scope.monthTotal / (1000*60)%60);
+            }
+        }
 
         $scope.createReport = function(id) {
             $http.get('/api/reports/' + id).success(function() {
                 console.log('report created');
             });
         };
-
-        function diff(timeIn, timeOut) {
-            var startDate = new Date(timeIn);
-            var endDate = new Date(timeOut);
-            var diff = endDate.getTime() - startDate.getTime();
-            var hours = Math.floor(diff / 1000 / 60 / 60);
-            diff -= hours * 1000 * 60 * 60;
-            var minutes = Math.floor(diff / 1000 / 60);
-
-            if (hours < 0) {
-                hours = hours + 24;
-            }
-
-            return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
-        }
     });
