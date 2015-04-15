@@ -43,7 +43,7 @@ exports.update = function(req, res) {
     fs.exists(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             _createJSON();
-            _updateData(reqData);
+            _updateData(reqData, null);
         } else {
             fs.readFile(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
@@ -54,8 +54,12 @@ exports.update = function(req, res) {
                 if (isExists(reqData)) {
                     res.json('exists');
                 } else {
-                    _updateData(reqData);
-                    res.json('success');
+                    _updateData(reqData, function(result) {
+                        if (result) {
+                            res.json('success');
+                        }
+                    });
+
                 }
             });
         }
@@ -81,7 +85,7 @@ function _createJSON() {
     };
 }
 
-function _updateData(reqData) {
+function _updateData(reqData, callback) {
     if (!employeesData[reqData.id]) {
         employeesData[reqData.id] = {
             id: reqData.id,
@@ -95,15 +99,15 @@ function _updateData(reqData) {
     }
     employeesData[reqData.id].data[day][reqData.state] = parseInt(reqData.time);
 
-    return _writeJSON();
+    _writeJSON(callback);
 }
 
-function _writeJSON() {
+function _writeJSON(callback) {
     console.log('writing', JSON.stringify(employeesData));
     fs.writeFile(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', JSON.stringify(employeesData), function(err) {
         if (err) {
-            return false;
+            callback(false);
         }
-        return true;
+        callback(true);
     });
 }

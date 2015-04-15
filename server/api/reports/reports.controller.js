@@ -2,21 +2,24 @@
 
 var _ = require('lodash');
 var fs = require('fs');
+var xlsx = require('xlsx');
 var employeesData;
 var logsPath = '/Users/erezcarmel/Desktop/';
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
 exports.create = function(req, res) {
-    loadData();
-    createReport(req.url.substr(1));
+    loadData(function() {
+        createReport(req.url.substr(1))
+    });
 };
 
 exports.createAll = function(req, res) {
-    loadData();
-    createAll();
+    loadData(function() {
+        createAll()
+    });
 };
 
-function loadData() {
+function loadData(callback) {
     fs.exists(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             console.log('file not found!');
@@ -26,6 +29,7 @@ function loadData() {
                     throw err;
                 }
                 employeesData = JSON.parse(data);
+                callback();
             });
         }
     });
