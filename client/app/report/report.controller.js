@@ -32,8 +32,10 @@ angular.module('timetrackerApp')
             return diff(timeIn, timeOut);
         };
 
-        $scope.saveFile = function(id) {
-            console.log(id);
+        $scope.createReport = function(id) {
+            $http.get('/api/reports/' + id).success(function() {
+                console.log('report created');
+            });
         };
 
         function diff(timeIn, timeOut) {

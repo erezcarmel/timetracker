@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="saveBtn" ng-click="saveFiles()">שמור קבצים</div>
+        <div class="saveBtn" ng-click="createReports()">שמור קבצים</div>
         <div class="report-container">
             <div ng-repeat="employee in employees" ng-show="employee.id != undefined" ng-click="showEmployee(employee.id)" class="id-box">{{employee.id}}</div>
         </div>

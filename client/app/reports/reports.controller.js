@@ -10,7 +10,11 @@ angular.module('timetrackerApp')
             $location.url('/report?id=' + id);
         };
 
-        $scope.saveFiles = function() {
-            console.log('saveFiles');
+        $scope.createReports = function() {
+            $scope.createReport = function(id) {
+                $http.get('/api/reports/').success(function() {
+                    console.log('reports created');
+                });
+            };
         };
     });
