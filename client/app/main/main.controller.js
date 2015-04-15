@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('timetrackerApp')
-    .controller('MainCtrl', function ($scope, $http) {
+    .controller('MainCtrl', function ($scope, $http, $timeout) {
         $scope.id;
         $scope.type;
         $scope.errorMsg = '';
+        $scope.successMsg = '';
 
         $scope.sign = function(type) {
             if (!$scope.id) {
@@ -20,13 +21,26 @@ angular.module('timetrackerApp')
                     } else {
                         $scope.errorMsg = 'לא ניתן לעדכן שעת יציאה פעמיים';
                     }
+                } else {
+                    if (type === 'in') {
+                        $scope.successMsg = 'יום טוב';
+                    } else {
+                        $scope.successMsg = 'להתראות';
+                    }
                 }
             });
         };
 
         $scope.$watch('id', function() {
-            if ($scope.errorMsg !== '') {
-                $scope.errorMsg = '';
+            $scope.errorMsg = '';
+            $scope.successMsg = '';
+        });
+
+        $scope.$watch('successMsg', function(msg) {
+            if (msg !== '') {
+                $timeout(function() {
+                    $scope.successMsg = '';
+                }, 3000);
             }
         });
 

@@ -16,8 +16,7 @@
                 <div class="button" ng-click="sign('out')">OUT</div>
             </div>
         </div>
-        <div class="error" ng-show="errorMsg != ''">
-            {{errorMsg}}
-        </div>
+        <div class="message error" ng-show="errorMsg != ''">{{errorMsg}}</div>
+        <div class="message success" ng-show="successMsg != ''">{{successMsg}}</div>
     </div>
 </div>

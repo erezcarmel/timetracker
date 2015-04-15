@@ -58,13 +58,20 @@
     }
 }
 
-.error {
+.message {
     font-size: 30px;
     width: 400px;
     margin-left: auto;
     margin-right: auto;
-    color: #f00;
     text-align: center;
+
+    &.error {
+      color: #f00;
+    }
+
+    &.success {
+      color: #008c00;
+    }
 }
 
 .footer {

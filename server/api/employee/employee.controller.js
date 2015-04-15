@@ -51,12 +51,11 @@ exports.update = function(req, res) {
                 }
                 employeesData = JSON.parse(data);
 
-                if (employeesData[reqData.id] &&
-                    employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()] &&
-                    employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()][reqData.state]) {
+                if (isExists(reqData)) {
                     res.json('exists');
                 } else {
                     _updateData(reqData);
+                    res.json('success');
                 }
             });
         }
@@ -69,6 +68,12 @@ exports.get = function(req, res) {
         month: employeesData.month
     });
 };
+
+function isExists(reqData) {
+    return employeesData[reqData.id] &&
+        employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()] &&
+        employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()][reqData.state];
+}
 
 function _createJSON() {
     employeesData = {
@@ -95,7 +100,7 @@ function _updateData(reqData) {
 
 function _writeJSON() {
     console.log('writing', JSON.stringify(employeesData));
-    fs.writeFile(logsPath + 'employees' + new Date().getMonth() + '.json', JSON.stringify(employeesData), function(err) {
+    fs.writeFile(logsPath + 'employees' + (new Date().getMonth() + 1) + '.json', JSON.stringify(employeesData), function(err) {
         if (err) {
             return false;
         }
