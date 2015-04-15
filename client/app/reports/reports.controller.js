@@ -11,10 +11,8 @@ angular.module('timetrackerApp')
         };
 
         $scope.createReports = function() {
-            $scope.createReport = function(id) {
-                $http.get('/api/reports/').success(function() {
-                    console.log('reports created');
-                });
-            };
+            $http.get('/api/reports/').success(function() {
+                console.log('reports created');
+            });
         };
     });
