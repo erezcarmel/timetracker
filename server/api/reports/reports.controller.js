@@ -2,7 +2,8 @@
 
 var _ = require('lodash');
 var fs = require('fs');
-//var xlsx = require('xlsx');
+var excelbuilder = require('msexcel-builder');
+
 var employeesData;
 var logsPath = '/Users/erezcarmel/Desktop/';
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
@@ -36,11 +37,9 @@ function loadData(callback) {
 }
 
 function createReport(id) {
-    var excelbuilder = require('msexcel-builder');
-
     var workbook = excelbuilder.createWorkbook('/Users/erezcarmel/Desktop/reports/', id + '.xlsx');
-
     var sheet1 = workbook.createSheet(id, 4, 40);
+    var row = 3;
 
     sheet1.width(4, 30);
     sheet1.width(3, 30);
@@ -50,7 +49,8 @@ function createReport(id) {
     sheet1.merge({col:1, row:1}, {col:4, row:1});
     sheet1.align(1, 1, 'center');
     sheet1.font(1, 1, {sz:'24', family:'3',bold:'true', iter:'true'});
-    sheet1.set(1, 1, employeesData.month);
+    var title = 'סיכום חודש ' + employeesData.month + ', ת.ז. ' + id;
+    sheet1.set(1, 1, title);
 
     sheet1.font(4, 2, {sz:'18', family:'3', bold:'true', iter:'true'});
     sheet1.font(3, 2, {sz:'18', family:'3', bold:'true', iter:'true'});
@@ -65,9 +65,6 @@ function createReport(id) {
     sheet1.set(2, 2, 'יציאה');
     sheet1.set(1, 2, 'סהכ');
 
-//    sheet1.fill(1, 1, {type:'Solid', fgColor:'8', bgColor:'#C0C0C0"'});
-
-    var row = 3;
     for (var day in employeesData[id].data) {
         var inTime = employeesData[id].data[day].in;
         var outTime = employeesData[id].data[day].out;
@@ -91,9 +88,13 @@ function createReport(id) {
         if (inTime && outTime) {
             sheet1.set(1, row, getDayTotal(inTime, outTime));
         }
-
         row++;
     }
+    sheet1.align(1, row, 'center');
+    sheet1.font(1, row, {sz:'18', family:'3', bold:'true'});
+    sheet1.set(1, row, 0);
+    sheet1.font(2, row, {sz:'18', family:'3', bold:'true', iter:'true'});
+    sheet1.set(2, row, 'סהכ');
 
     workbook.save(function(ok){
         if (!ok) {
