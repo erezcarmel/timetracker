@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('timetrackerApp')
-    .controller('ReportCtrl', function ($scope, $http, $location) {
+    .controller('ReportCtrl', function ($scope, $http, $location, $window) {
         $scope.monthTotal = 0;
 
         $http.get('/api/employees/' + $location.search()['id']).success(function(employee) {
@@ -36,6 +36,10 @@ angular.module('timetrackerApp')
             minutes = (minutes < 10) ? "0" + minutes : minutes;
 
             return hours + ":" + minutes;
+        };
+
+        $scope.goBack = function() {
+            $window.history.back();
         };
 
         function calcMonthTotal(data) {

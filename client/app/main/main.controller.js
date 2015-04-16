@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('timetrackerApp')
-    .controller('MainCtrl', function ($scope, $http, $timeout) {
+    .controller('MainCtrl', function ($scope, $http, $timeout, $location) {
         $scope.id;
         $scope.type;
         $scope.errorMsg = '';
@@ -29,6 +29,10 @@ angular.module('timetrackerApp')
                     }
                 }
             });
+        };
+
+        $scope.goToReports = function() {
+            $location.url('/reports');
         };
 
         $scope.$watch('id', function() {

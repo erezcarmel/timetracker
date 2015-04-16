@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('timetrackerApp')
-    .controller('ReportsCtrl', function ($scope, $http, $location) {
+    .controller('ReportsCtrl', function ($scope, $http, $location, $window) {
         $http.get('/api/employees').success(function(employees) {
             $scope.employees = employees;
         });
@@ -14,5 +14,9 @@ angular.module('timetrackerApp')
             $http.get('/api/reports/').success(function() {
                 console.log('reports created');
             });
+        };
+
+        $scope.goBack = function() {
+            $window.history.back();
         };
     });
