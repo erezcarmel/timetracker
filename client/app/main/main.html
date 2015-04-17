@@ -14,8 +14,36 @@
                 <div class="button" ng-click="sign('in')">IN</div>
                 <div class="button" ng-click="sign('out')">OUT</div>
             </div>
+            <div class="message error" ng-show="errorMsg != ''">{{errorMsg}}</div>
+            <div class="message success" ng-show="successMsg != ''">{{successMsg}}</div>
         </div>
-        <div class="message error" ng-show="errorMsg != ''">{{errorMsg}}</div>
-        <div class="message success" ng-show="successMsg != ''">{{successMsg}}</div>
+
+        <div class="keyboard">
+            <table>
+                <tr>
+                    <td><div class="button" ng-click="enterChar('1')">1</div></td>
+                    <td><div class="button" ng-click="enterChar('2')">2</div></td>
+                    <td><div class="button" ng-click="enterChar('3')">3</div></td>
+                </tr>
+                <tr>
+                    <td><div class="button" ng-click="enterChar('4')">4</div></td>
+                    <td><div class="button" ng-click="enterChar('5')">5</div></td>
+                    <td><div class="button" ng-click="enterChar('6')">6</div></td>
+                </tr>
+                <tr>
+                    <td><div class="button" ng-click="enterChar('7')">7</div></td>
+                    <td><div class="button" ng-click="enterChar('8')">8</div></td>
+                    <td><div class="button" ng-click="enterChar('9')">9</div></td>
+                </tr>
+                <tr>
+                    <td><div class="button" ng-click="deleteChar()">מחק</div></td>
+                    <td><div class="button" ng-click="enterChar('0')">0</div></td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+
+        </div>
     </div>
 </div>

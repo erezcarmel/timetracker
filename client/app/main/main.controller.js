@@ -2,7 +2,7 @@
 
 angular.module('timetrackerApp')
     .controller('MainCtrl', function ($scope, $http, $timeout, $location) {
-        $scope.id;
+        $scope.id = '';
         $scope.type;
         $scope.errorMsg = '';
         $scope.successMsg = '';
@@ -33,6 +33,16 @@ angular.module('timetrackerApp')
 
         $scope.goToReports = function() {
             $location.url('/reports');
+        };
+
+        $scope.enterChar = function(char) {
+            if ($scope.id.length < 9) {
+                $scope.id += char;
+            }
+        };
+
+        $scope.deleteChar = function() {
+            $scope.id = $scope.id.substring(0, $scope.id.length - 1)
         };
 
         $scope.$watch('id', function() {
