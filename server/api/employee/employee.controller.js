@@ -11,17 +11,17 @@
 
 var _ = require('lodash');
 var fs = require('fs');
+var localConfig = require('../../config/local.env.js');
 var employeesData;
-var reportsPath = '/Users/erezcarmel/Desktop/reports/';
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
 // Get list of things
 exports.index = function(req, res) {
-    fs.exists(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             _createJSON();
         } else {
-            fs.readFile(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }
@@ -40,14 +40,14 @@ exports.update = function(req, res) {
         time: reqUrlArr[2]
     };
 
-    fs.exists(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             _createJSON();
             _updateData(reqData, function() {
                 console.log('JSON created');
             });
         } else {
-            fs.readFile(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }
@@ -110,7 +110,7 @@ function _updateData(reqData, callback) {
 
 function _writeJSON(callback) {
     console.log('writing', JSON.stringify(employeesData));
-    fs.writeFile(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', JSON.stringify(employeesData), function(err) {
+    fs.writeFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', JSON.stringify(employeesData), function(err) {
         if (err) {
             callback(false);
         }

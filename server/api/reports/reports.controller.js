@@ -3,9 +3,9 @@
 var _ = require('lodash');
 var fs = require('fs');
 var excelbuilder = require('msexcel-builder');
+var localConfig = require('../../config/local.env.js');
 
 var employeesData;
-var reportsPath = '/Users/erezcarmel/Desktop/reports/';
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
 exports.create = function(req, res) {
@@ -25,11 +25,11 @@ exports.createAll = function(req, res) {
 };
 
 function loadData(callback) {
-    fs.exists(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             console.log('file not found!');
         } else {
-            fs.readFile(reportsPath + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }
@@ -41,7 +41,7 @@ function loadData(callback) {
 }
 
 function createReport(id) {
-    var workbook = excelbuilder.createWorkbook(reportsPath + months[new Date().getMonth()], id + '.xlsx');
+    var workbook = excelbuilder.createWorkbook(localConfig.REPORTS_FOLDER + months[new Date().getMonth()], id + '.xlsx');
     var sheet1 = workbook.createSheet(id, 4, 40);
     var row = 3;
 
@@ -163,9 +163,9 @@ function calcMonthTotal(data) {
 }
 
 function createReportsFolder(callback) {
-    fs.exists(reportsPath + months[new Date().getMonth()], function (exists){
+    fs.exists(localConfig.REPORTS_FOLDER + months[new Date().getMonth()], function (exists){
         if (!exists) {
-            fs.mkdir(reportsPath + months[new Date().getMonth()], function(err, res) {
+            fs.mkdir(localConfig.REPORTS_FOLDER + months[new Date().getMonth()], function(err, res) {
                 callback()
             });
         } else {
