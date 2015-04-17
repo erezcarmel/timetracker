@@ -19,6 +19,7 @@ var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', '�
 exports.index = function(req, res) {
     fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
+            console.log(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json not exist!');
             _createJSON();
         } else {
             fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
