@@ -16,7 +16,7 @@ angular.module('timetrackerApp')
             });
         };
 
-        $scope.goBack = function() {
-            $window.history.back();
+        $scope.shutdown = function() {
+            $window.close();
         };
     });
