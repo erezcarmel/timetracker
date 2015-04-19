@@ -1,3 +1,28 @@
+.startOverlay {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0.95;
+  position: absolute;
+  z-index: 999;
+
+  .startAppButton {
+    background: #4393B9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+    width: 400px;
+    height: 200px;
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 40px;
+    cursor: pointer;
+  }
+}
+
 #title {
     border-bottom: none;
     margin-top: -20px;
@@ -16,7 +41,7 @@
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     background: #4393B9;
 
-    .reportsBtn {
+    .exitBtn {
       background: #F5F5F5;
       color: #000;
       width: 90px;

@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('timetrackerApp')
-    .controller('MainCtrl', function ($scope, $http, $timeout, $window) {
+    .controller('MainCtrl', function ($scope, $http, $timeout, $document) {
         $scope.id = '';
         $scope.type;
         $scope.errorMsg = '';
         $scope.successMsg = '';
+        $scope.isFullscreen = false;
 
         $scope.sign = function(type) {
             if (!$scope.id) {
@@ -31,18 +32,24 @@ angular.module('timetrackerApp')
             });
         };
 
-        $scope.shutdown = function() {
-            $window.close();
-        };
-
         $scope.enterChar = function(char) {
             if ($scope.id.length < 9) {
                 $scope.id += char;
             }
         };
 
+        $scope.startFullscreen = function() {
+            $scope.isFullscreen = true;
+            $document.context.documentElement.webkitRequestFullScreen();
+        };
+
         $scope.deleteChar = function() {
             $scope.id = $scope.id.substring(0, $scope.id.length - 1)
+        };
+
+        $scope.getCurretnDate = function() {
+            var _date = new Date();
+            return _date.getDate() + '/' + (_date.getMonth() + 1) + '/' + _date.getFullYear();
         };
 
         $scope.$watch('id', function() {
@@ -57,5 +64,4 @@ angular.module('timetrackerApp')
                 }, 3000);
             }
         });
-
     });

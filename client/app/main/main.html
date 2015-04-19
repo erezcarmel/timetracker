@@ -1,5 +1,22 @@
+<script>
+    function toggleFullScreen() {
+        if(!document.webkitIsFullScreen){
+            document.documentElement.webkitRequestFullScreen();
+        } else {
+            document.webkitCancelFullScreen();
+        }
+    }
+</script>
+
+<div class="startOverlay" ng-show="!isFullscreen">
+    <div class="startAppButton" ng-click="startFullscreen()">
+        {{getCurretnDate()}}<br>
+        לחץ כאן
+    </div>
+</div>
+
 <header class="header" id="title">
-    <div class="reportsBtn" ng-click="shutdown()">כיבוי</div>
+    <div class="backBtn" onclick="javascript:toggleFullScreen();">יציאה</div>
     <div class="container">
         <h1>גן תומר - מערכת שעות</h1>
     </div>
