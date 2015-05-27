@@ -23,6 +23,7 @@ angular.module('timetrackerApp')
                         $scope.errorMsg = 'לא ניתן לעדכן שעת יציאה פעמיים';
                     }
                 } else {
+                    $scope.id = '';
                     if (type === 'in') {
                         $scope.successMsg = 'יום טוב';
                     } else {
@@ -52,9 +53,11 @@ angular.module('timetrackerApp')
             return _date.getDate() + '/' + (_date.getMonth() + 1) + '/' + _date.getFullYear();
         };
 
-        $scope.$watch('id', function() {
+        $scope.$watch('id', function(id) {
             $scope.errorMsg = '';
-            $scope.successMsg = '';
+            if (id.length > 0) {
+                $scope.successMsg = '';
+            }
         });
 
         $scope.$watch('successMsg', function(msg) {

@@ -25,7 +25,7 @@ angular.module('timetrackerApp')
                 minutes = '0' + minutes;
             }
 
-            return  hours + ':' + minutes;
+            return checkNaN(hours, minutes);
         };
 
         $scope.getTotal = function(duration) {
@@ -35,7 +35,7 @@ angular.module('timetrackerApp')
             hours = (hours < 10) ? "0" + hours : hours;
             minutes = (minutes < 10) ? "0" + minutes : minutes;
 
-            return hours + ":" + minutes;
+            return checkNaN(hours, minutes);
         };
 
         $scope.goBack = function() {
@@ -55,7 +55,9 @@ angular.module('timetrackerApp')
                 hours = (hours < 10) ? "0" + hours : hours;
                 minutes = (minutes < 10) ? "0" + minutes : minutes;
 
-                $scope.monthTotal = hours + ':' + minutes;
+
+
+                $scope.monthTotal = checkNaN(hours, minutes);
             }
         }
 
@@ -64,4 +66,15 @@ angular.module('timetrackerApp')
                 console.log('report created');
             });
         };
+
+        function checkNaN(hours, minutes) {
+            if (hours.toString() === 'NaN') {
+                hours = '--';
+            }
+            if (minutes.toString() === 'NaN') {
+                minutes = '--';
+            }
+
+            return hours + ':' + minutes;
+        }
     });
