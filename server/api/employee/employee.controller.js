@@ -14,6 +14,7 @@ var fs = require('fs');
 var localConfig = require('../../config/local.env.js');
 var employees = {};
 var employeesData;
+var reqData = {};
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
 // Get list of things
@@ -53,7 +54,7 @@ exports.list = function(req, res) {
 
 exports.update = function(req, res) {
     var reqUrlArr = req.url.substr(1).split('/');
-    var reqData = {
+    reqData = {
         id: reqUrlArr[0],
         state: reqUrlArr[1],
         time: reqUrlArr[2]
@@ -101,7 +102,7 @@ exports.get = function(req, res) {
 };
 
 exports.add = function(req, res) {
-    var reqData = {
+    reqData = {
         id: req.body.id,
         name: req.body.name
     };
@@ -109,7 +110,6 @@ exports.add = function(req, res) {
     fs.exists(localConfig.REPORTS_FOLDER + 'employees.json', function (exists){
         if (!exists) {
             employees = {};
-
             _addEmployee(reqData, function(result) {
                 if (result) {
                     res.json('success');
@@ -138,7 +138,7 @@ exports.add = function(req, res) {
 };
 
 exports.remove = function(req, res) {
-    var reqData = {
+    reqData = {
         id: req.body.id
     };
 
@@ -164,14 +164,14 @@ exports.remove = function(req, res) {
     });
 };
 
-function _isExists(reqData) {
-    return employeesData[reqData.id] &&
-        employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()] &&
-        employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()][reqData.state];
+function _isExists(data) {
+    return employeesData[data.id] &&
+        employeesData[data.id].data[new Date(parseInt(data.time)).getDate()] &&
+        employeesData[data.id].data[new Date(parseInt(data.time)).getDate()][data.state];
 }
 
-function _isEmployeeExists(reqData) {
-    return reqData.id in employees;
+function _isEmployeeExists(data) {
+    return data.id in employees;
 }
 
 function _createJSON(callback) {
@@ -188,49 +188,50 @@ function _createJSON(callback) {
                     month: months[new Date().getMonth()]
                 };
                 for (var id in employees) {
-                    console.log(id);
                     employeesData[id] = {
                         id: id,
                         data: {}
                     }
                 }
-                callback();
+                if (callback) {
+                    callback();
+                }
             });
         }
     });
 
 }
 
-function _addEmployee(reqData, callback) {
-    employees[reqData.id] = {
-        name: reqData.name,
-        id: reqData.id
+function _addEmployee(data, callback) {
+    employees[data.id] = {
+        name: data.name,
+        id: data.id
     };
     _writeJSON('employees', callback);
 }
 
-function _removeEmployee(reqData, callback) {
-    delete employees[reqData.id];
+function _removeEmployee(data, callback) {
+    delete employees[data.id];
     _writeJSON('employees', callback);
 }
 
-function _updateData(reqData, callback) {
-    if (reqData.time) {
-        var day = new Date(parseInt(reqData.time)).getDate();
+function _updateData(data, callback) {
+    if (data.time) {
+        var day = new Date(parseInt(data.time)).getDate();
 
-        if (!employeesData[reqData.id]) {
-            employeesData[reqData.id] = {
-                id: employeesData[reqData.id],
+        if (!employeesData[data.id]) {
+            employeesData[data.id] = {
+                id: data.id,
                 data: {}
-            }
+            };
         }
-        if (!employeesData[reqData.id].data[day]) {
-            employeesData[reqData.id].data[day] = {};
+        if (!employeesData[data.id].data[day]) {
+            employeesData[data.id].data[day] = {};
         }
-        employeesData[reqData.id].data[day][reqData.state] = parseInt(reqData.time);
+        employeesData[data.id].data[day][data.state] = parseInt(data.time);
 
-        if (employeesData[reqData.id].data[day].in && employeesData[reqData.id].data[day].out) {
-            employeesData[reqData.id].data[day].total = employeesData[reqData.id].data[day].out - employeesData[reqData.id].data[day].in;
+        if (employeesData[data.id].data[day].in && employeesData[data.id].data[day].out) {
+            employeesData[data.id].data[day].total = employeesData[data.id].data[day].out - employeesData[data.id].data[day].in;
         }
     }
     _writeJSON('employees' + (new Date().getMonth() + 1), callback);
