@@ -130,6 +130,33 @@ exports.add = function(req, res) {
     });
 };
 
+exports.remove = function(req, res) {
+    var reqData = {
+        id: req.body.id
+    };
+
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees.json', function (exists){
+        if (exists) {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees.json', 'utf-8', function read(err, data) {
+                if (err) {
+                    throw err;
+                }
+                employeesData = JSON.parse(data);
+
+                if (_isEmployeeExists(reqData)) {
+                    _removeEmployee(reqData, function(result) {
+                        if (result) {
+                            res.json('success');
+                        }
+                    });
+                } else {
+                    res.json('notexists');
+                }
+            });
+        }
+    });
+};
+
 function _isExists(reqData) {
     return employeesData[reqData.id] &&
         employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()] &&
@@ -151,6 +178,11 @@ function _addEmployee(reqData, callback) {
         name: reqData.name,
         id: reqData.id
     };
+    _writeJSON('employees', callback);
+}
+
+function _removeEmployee(reqData, callback) {
+    delete employees[reqData.id];
     _writeJSON('employees', callback);
 }
 

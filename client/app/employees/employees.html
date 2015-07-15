@@ -8,7 +8,7 @@
     <div class="row">
         <div class="employee-form">
             <div class="buttons">
-                <div class="button" ng-click="addEmployee()">הוסף</div>
+                <div class="button" ng-click="add()">הוסף</div>
             </div>
             <div class="input-box">
                 <div class="id-title">תעודת זהות</div>
@@ -24,7 +24,7 @@
 
     <table class="employees-table">
         <tr ng-repeat="employee in employees">
-            <td class="remove button">X</td>
+            <td class="remove button" ng-click="remove(employee.id)">X</td>
             <td class="id">{{employee.id}}</td>
             <td class="name">{{employee.name}}</td>
         </tr>
