@@ -12,6 +12,7 @@
 var _ = require('lodash');
 var fs = require('fs');
 var localConfig = require('../../config/local.env.js');
+var employees;
 var employeesData;
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
@@ -28,6 +29,23 @@ exports.index = function(req, res) {
                 }
                 employeesData = JSON.parse(data);
                 return res.json(200, employeesData);
+            });
+        }
+    });
+};
+
+exports.list = function(req, res) {
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees.json', function (exists){
+        if (!exists) {
+            console.log(localConfig.REPORTS_FOLDER + 'employees.json not exist!');
+            employees = {};
+        } else {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees.json', 'utf-8', function read(err, data) {
+                if (err) {
+                    throw err;
+                }
+                employees = JSON.parse(data);
+                return res.json(200, employees);
             });
         }
     });
@@ -54,7 +72,7 @@ exports.update = function(req, res) {
                 }
                 employeesData = JSON.parse(data);
 
-                if (isExists(reqData)) {
+                if (_isExists(reqData)) {
                     res.json('exists');
                 } else {
                     _updateData(reqData, function(result) {
@@ -62,7 +80,6 @@ exports.update = function(req, res) {
                             res.json('success');
                         }
                     });
-
                 }
             });
         }
@@ -76,10 +93,51 @@ exports.get = function(req, res) {
     });
 };
 
-function isExists(reqData) {
+exports.add = function(req, res) {
+    var reqData = {
+        id: req.body.id,
+        name: req.body.name
+    };
+
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees.json', function (exists){
+        if (!exists) {
+            employees = {};
+
+            _addEmployee(reqData, function(result) {
+                if (result) {
+                    res.json('success');
+                }
+            });
+
+        } else {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees.json', 'utf-8', function read(err, data) {
+                if (err) {
+                    throw err;
+                }
+                employeesData = JSON.parse(data);
+
+                if (_isEmployeeExists(reqData)) {
+                    res.json('exists');
+                } else {
+                    _addEmployee(reqData, function(result) {
+                        if (result) {
+                            res.json('success');
+                        }
+                    });
+                }
+            });
+        }
+    });
+};
+
+function _isExists(reqData) {
     return employeesData[reqData.id] &&
         employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()] &&
         employeesData[reqData.id].data[new Date(parseInt(reqData.time)).getDate()][reqData.state];
+}
+
+function _isEmployeeExists(reqData) {
+    return employees[reqData.id];
 }
 
 function _createJSON() {
@@ -88,30 +146,34 @@ function _createJSON() {
     };
 }
 
-function _updateData(reqData, callback) {
-    if (!employeesData[reqData.id]) {
-        employeesData[reqData.id] = {
-            id: reqData.id,
-            data: {}
-        };
-    }
-    var day = new Date(parseInt(reqData.time)).getDate();
-
-    if (!employeesData[reqData.id].data[day]) {
-        employeesData[reqData.id].data[day] = {};
-    }
-    employeesData[reqData.id].data[day][reqData.state] = parseInt(reqData.time);
-
-    if (employeesData[reqData.id].data[day].in && employeesData[reqData.id].data[day].out) {
-        employeesData[reqData.id].data[day].total = employeesData[reqData.id].data[day].out - employeesData[reqData.id].data[day].in;
-    }
-
-    _writeJSON(callback);
+function _addEmployee(reqData, callback) {
+    employees[reqData.id] = {
+        name: reqData.name,
+        id: reqData.id
+    };
+    _writeJSON('employees', callback);
 }
 
-function _writeJSON(callback) {
-    console.log('writing', JSON.stringify(employeesData));
-    fs.writeFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', JSON.stringify(employeesData), function(err) {
+function _updateData(reqData, callback) {
+    if (reqData.time) {
+        var day = new Date(parseInt(reqData.time)).getDate();
+
+        if (!employeesData[reqData.id].data[day]) {
+            employeesData[reqData.id].data[day] = {};
+        }
+        employeesData[reqData.id].data[day][reqData.state] = parseInt(reqData.time);
+
+        if (employeesData[reqData.id].data[day].in && employeesData[reqData.id].data[day].out) {
+            employeesData[reqData.id].data[day].total = employeesData[reqData.id].data[day].out - employeesData[reqData.id].data[day].in;
+        }
+    }
+    _writeJSON('employees' + (new Date().getMonth() + 1), callback);
+}
+
+function _writeJSON(id, callback) {
+    console.log('writing', id);
+    var dataToWrite = id === 'employees' ? employees : employeesData;
+    fs.writeFile(localConfig.REPORTS_FOLDER + id + '.json', JSON.stringify(dataToWrite), 'utf-8', function(err) {
         if (err) {
             callback(false);
         }

@@ -1,0 +1,32 @@
+<header class="header" id="title">
+    <div class="container">
+        <h1>גן תומר - ניהול עובדים</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="employee-form">
+            <div class="buttons">
+                <div class="button" ng-click="addEmployee()">הוסף</div>
+            </div>
+            <div class="input-box">
+                <div class="id-title">תעודת זהות</div>
+                <input type="text" ng-model="id" maxlength="9">
+            </div>
+            <div class="input-box">
+                <div class="name-title">שם</div>
+                <input type="text" ng-model="name" maxlength="9">
+            </div>
+        </div>
+    </div>
+
+
+    <table class="employees-table">
+        <tr ng-repeat="employee in employees">
+            <td class="remove button">X</td>
+            <td class="id">{{employee.id}}</td>
+            <td class="name">{{employee.name}}</td>
+        </tr>
+    </table>
+</div>
