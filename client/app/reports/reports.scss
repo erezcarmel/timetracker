@@ -9,19 +9,6 @@
   }
 }
 
-.saveBtn {
-  width: 200px;
-  height: 70px;
-  background: #4393B9;
-  font-size: 30px;
-  text-align: center;
-  padding-top: 13px;
-  margin: 10px;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .backBtn {
   background: #F5F5F5;
   color: #000;
@@ -32,6 +19,35 @@
   font-weight: 700;
   cursor: pointer;
   padding-top: 34px;
+}
+
+.actions-container {
+  width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+
+  .action-btn {
+    width: 200px;
+    height: 70px;
+    background: #4393B9;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 13px;
+    margin: 10px;
+    display: inline-block;
+    cursor: pointer;
+
+    &.save {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    &.select {
+      width: 400px;
+    }
+  }
 }
 
 .report-container {
