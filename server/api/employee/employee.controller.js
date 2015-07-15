@@ -12,7 +12,7 @@
 var _ = require('lodash');
 var fs = require('fs');
 var localConfig = require('../../config/local.env.js');
-var employees;
+var employees = {};
 var employeesData;
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
@@ -61,9 +61,14 @@ exports.update = function(req, res) {
 
     fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
-            _createJSON();
-            _updateData(reqData, function() {
-                console.log('JSON created');
+            _createJSON(function() {
+                if (!_isEmployeeExists(reqData)) {
+                    res.json('notexists');
+                } else {
+                    _updateData(reqData, function() {
+                        console.log('JSON created');
+                    });
+                }
             });
         } else {
             fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
@@ -74,6 +79,8 @@ exports.update = function(req, res) {
 
                 if (_isExists(reqData)) {
                     res.json('exists');
+                } else if (!_isEmployeeExists(reqData)) {
+                    res.json('notexists');
                 } else {
                     _updateData(reqData, function(result) {
                         if (result) {
@@ -164,13 +171,34 @@ function _isExists(reqData) {
 }
 
 function _isEmployeeExists(reqData) {
-    return employees[reqData.id];
+    return reqData.id in employees;
 }
 
-function _createJSON() {
-    employeesData = {
-        month: months[new Date().getMonth()]
-    };
+function _createJSON(callback) {
+    fs.exists(localConfig.REPORTS_FOLDER + 'employees.json', function (exists){
+        if (!exists) {
+            console.log(localConfig.REPORTS_FOLDER + 'employees.json not exist!');
+        } else {
+            fs.readFile(localConfig.REPORTS_FOLDER + 'employees.json', 'utf-8', function read(err, data) {
+                if (err) {
+                    throw err;
+                }
+                employees = JSON.parse(data);
+                employeesData = {
+                    month: months[new Date().getMonth()]
+                };
+                for (var id in employees) {
+                    console.log(id);
+                    employeesData[id] = {
+                        id: id,
+                        data: {}
+                    }
+                }
+                callback();
+            });
+        }
+    });
+
 }
 
 function _addEmployee(reqData, callback) {
@@ -190,6 +218,12 @@ function _updateData(reqData, callback) {
     if (reqData.time) {
         var day = new Date(parseInt(reqData.time)).getDate();
 
+        if (!employeesData[reqData.id]) {
+            employeesData[reqData.id] = {
+                id: employeesData[reqData.id],
+                data: {}
+            }
+        }
         if (!employeesData[reqData.id].data[day]) {
             employeesData[reqData.id].data[day] = {};
         }

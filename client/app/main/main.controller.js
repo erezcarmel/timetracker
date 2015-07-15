@@ -22,6 +22,8 @@ angular.module('timetrackerApp')
                     } else {
                         $scope.errorMsg = 'לא ניתן לעדכן שעת יציאה פעמיים';
                     }
+                } else if(result === 'notexists') {
+                    $scope.errorMsg = 'עובד לא קיים במערכת';
                 } else {
                     $scope.id = '';
                     if (type === 'in') {
