@@ -3,7 +3,7 @@
 angular.module('timetrackerApp')
     .controller('MainCtrl', function ($scope, $http, $timeout, $document) {
         $scope.id = '';
-        $scope.type;
+        $scope.type = '';
         $scope.errorMsg = '';
         $scope.successMsg = '';
         $scope.isFullscreen = false;
@@ -47,7 +47,7 @@ angular.module('timetrackerApp')
         };
 
         $scope.deleteChar = function() {
-            $scope.id = $scope.id.substring(0, $scope.id.length - 1)
+            $scope.id = $scope.id.substring(0, $scope.id.length - 1);
         };
 
         $scope.getCurretnDate = function() {

@@ -153,8 +153,8 @@ function calcMonthTotal(data) {
             monthTotal += data[day].total;
         }
     }
-    var minutes = parseInt(monthTotal / (1000*60)%60)
-        , hours = parseInt(monthTotal / (1000*60*60));
+    var minutes = parseInt(monthTotal / (1000*60)%60);
+    var hours = parseInt(monthTotal / (1000*60*60));
 
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;

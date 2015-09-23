@@ -4,7 +4,7 @@ angular.module('timetrackerApp')
     .controller('ReportCtrl', function ($scope, $http, $location, $window) {
         $scope.monthTotal = 0;
 
-        $http.get('/api/employees/' + $location.search()['id']).success(function(employee) {
+        $http.get('/api/employees/' + $location.search().id).success(function(employee) {
             $scope.month = employee.month;
             $scope.employee = employee.data;
             calcMonthTotal($scope.employee.data);
@@ -29,11 +29,11 @@ angular.module('timetrackerApp')
         };
 
         $scope.getTotal = function(duration) {
-            var minutes = parseInt((duration/(1000*60))%60)
-                , hours = parseInt((duration/(1000*60*60))%24);
+            var minutes = parseInt((duration/(1000*60))%60);
+            var hours = parseInt((duration/(1000*60*60))%24);
 
-            hours = (hours < 10) ? "0" + hours : hours;
-            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            hours = (hours < 10) ? '0' + hours : hours;
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
 
             return checkNaN(hours, minutes);
         };
@@ -49,11 +49,11 @@ angular.module('timetrackerApp')
                     $scope.monthTotal += data[day].total;
                 }
 
-                var minutes = parseInt($scope.monthTotal / (1000*60)%60)
-                    , hours = parseInt($scope.monthTotal / (1000*60*60));
+                var minutes = parseInt($scope.monthTotal / (1000*60)%60);
+                var hours = parseInt($scope.monthTotal / (1000*60*60));
 
-                hours = (hours < 10) ? "0" + hours : hours;
-                minutes = (minutes < 10) ? "0" + minutes : minutes;
+                hours = (hours < 10) ? '0' + hours : hours;
+                minutes = (minutes < 10) ? '0' + minutes : minutes;
 
 
 
