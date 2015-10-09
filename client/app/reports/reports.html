@@ -1,6 +1,6 @@
 <header class="header" id="employees-title">
     <div class="container">
-        <select dir="rtl" class="yearSelect" ng-model="selectedDate.year">
+        <select class="yearSelect" ng-model="selectedDate.year">
             <option ng-repeat="year in years" value="{{year}}" ng-selected="year == selectedDate.year">{{year}}</option>
         </select>
         <select dir="rtl" class="monthSelect" ng-model="selectedDate.month">

@@ -12,7 +12,7 @@
     }
 
     .monthSelect {
-      width: 250px;
+      width: 230px;
     }
 
     .yearSelect {
@@ -20,6 +20,7 @@
     }
 
     .monthSelect, .yearSelect {
+      direction: rtl;
       height: 60px;
       position: relative;
       top: 0px;
