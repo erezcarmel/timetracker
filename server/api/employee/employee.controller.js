@@ -19,19 +19,18 @@ var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', '�
 
 // Get list of things
 exports.index = function(req, res) {
-    console.log(req.params.month, req.params.year);
     if (!req.params.month) {
         req.params.month = new Date().getMonth() + 1;
     }
     if (!req.params.year) {
         req.params.year = new Date().getFullYear();
     }
-    fs.exists(localConfig.REPORTS_FOLDER + 'employees' + req.params.month + '.json', function (exists){
+    fs.exists(localConfig.REPORTS_FOLDER + req.params.year + '/employees' + req.params.month + '.json', function (exists){
         if (!exists) {
-            console.log(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json not exist!');
-            _createJSON();
+            console.log(localConfig.REPORTS_FOLDER + req.params.year + '/employees' + req.params.month + '.json not exist!');
+            return res.json(200, {});
         } else {
-            fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(localConfig.REPORTS_FOLDER + + req.params.year + '/employees' + req.params.month + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }
@@ -67,7 +66,7 @@ exports.update = function(req, res) {
         time: reqUrlArr[2]
     };
 
-    fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
+    fs.exists(localConfig.REPORTS_FOLDER + new Date().getFullYear() + '/employees' + (new Date().getMonth() + 1) + '.json', function (exists){
         if (!exists) {
             _createJSON(function() {
                 if (!_isEmployeeExists(reqData)) {
@@ -79,7 +78,7 @@ exports.update = function(req, res) {
                 }
             });
         } else {
-            fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(localConfig.REPORTS_FOLDER + new Date().getFullYear() + '/employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }

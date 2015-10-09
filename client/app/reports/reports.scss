@@ -1,11 +1,27 @@
-#title {
+#employees-title {
   border-bottom: none;
   margin-top: -20px;
 
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+  .container {
+    h1 {
+      font-size: 60px;
+      line-height: 1;
+      letter-spacing: -1px;
+      width: 300px;
+      display: inline-block;
+    }
+
+    .monthSelect {
+      width: 250px;
+      height: 60px;
+      position: relative;
+      top: 10px;
+      background-color: transparent;
+      display: inline-block;
+      font-size: 60px;
+      line-height: 1;
+      border: 0;
+    }
   }
 }
 

@@ -16,20 +16,6 @@ angular.module('timetrackerApp')
             {id: 11, name: 'נובמבר'},
             {id: 12, name: 'דצמבר'}
         ];
-//        $scope.months = {
-//            1: 'ינואר',
-//            2: 'פברואר',
-//            3: 'מרץ',
-//            4: 'אפריל',
-//            5: 'מאי',
-//            6: 'יוני',
-//            7: 'יולי',
-//            8: 'אוגוסט',
-//            9: 'ספטמבר',
-//            10: 'אוקטובר',
-//            11: 'נובמבר',
-//            12: 'דצמבר'
-//        };
         $scope.years = [
             2015,
             2016,
@@ -37,13 +23,21 @@ angular.module('timetrackerApp')
             2018,
             2019
         ];
+        $scope.selectedDate = {
+            month: new Date().getMonth() + 1,
+            year: new Date().getFullYear()
+        };
 
-        $scope.selectedMonth = new Date().getMonth() + 1;
-        $scope.selectedYear = new Date().getFullYear();
+        $scope.$watch('selectedDate.month', function() {
+            $scope.loadMonthData();
+        });
+
+        $scope.$watch('selectedDate.year', function() {
+            $scope.loadMonthData();
+        });
 
         $scope.loadMonthData = function() {
-            $http.get('/api/employees/' + $scope.selectedYear + '/' + $scope.selectedMonth).success(function(employees) {
-//            $http.get('/api/employees/' + $scope.selectedYear + '/' + $scope.selectedMonth).success(function(employees) {
+            $http.get('/api/employees/' + $scope.selectedDate.year + '/' + $scope.selectedDate.month).success(function(employees) {
                 $scope.employees = employees;
                 $scope.month = employees.month;
             });

@@ -1,15 +1,15 @@
-<header class="header" id="title">
+<header class="header" id="employees-title">
     <div class="container">
-        <h1>סיכום חודש {{month}}</h1>
+        <select dir="rtl" name="repeatSelect" class="monthSelect" ng-model="selectedDate.month">
+            <option ng-repeat="month in months" value="{{month.id}}" ng-selected="month.id == selectedDate.month">{{month.name}}</option>
+        </select>
+        <h1>סיכום חודש </h1>
     </div>
 </header>
 
 <div class="container">
     <div class="row">
         <div class="actions-container">
-            <!--<div class="action-btn select" ng-click="">שנה ספרייה-->
-                <!--<input type="file" webkitdirectory directory/>-->
-            <!--</div>-->
             <div class="action-btn save" ng-click="createReports()">שמור קבצים</div>
         </div>
         <div class="report-container">
