@@ -21,7 +21,8 @@ angular.module('timetrackerApp')
             2016,
             2017,
             2018,
-            2019
+            2019,
+            2020
         ];
         $scope.selectedDate = {
             month: new Date().getMonth() + 1,

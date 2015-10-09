@@ -13,6 +13,13 @@
 
     .monthSelect {
       width: 250px;
+    }
+
+    .yearSelect {
+      width: 190px;
+    }
+
+    .monthSelect, .yearSelect {
       height: 60px;
       position: relative;
       top: 10px;
@@ -21,6 +28,10 @@
       font-size: 60px;
       line-height: 1;
       border: 0;
+      option {
+        font-size: 30px;
+        line-height: 30px;
+      }
     }
   }
 }
