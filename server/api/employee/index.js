@@ -5,7 +5,7 @@ var controller = require('./employee.controller.js');
 
 var router = express.Router();
 
-router.get('/:month', controller.index);
+router.get('/:year/:month', controller.index);
 router.get('/list', controller.list);
 router.put('/:id/:state/:time', controller.update);
 router.put('/add', controller.add);

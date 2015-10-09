@@ -43,6 +43,7 @@ angular.module('timetrackerApp')
 
         $scope.loadMonthData = function() {
             $http.get('/api/employees/' + $scope.selectedYear + '/' + $scope.selectedMonth).success(function(employees) {
+//            $http.get('/api/employees/' + $scope.selectedYear + '/' + $scope.selectedMonth).success(function(employees) {
                 $scope.employees = employees;
                 $scope.month = employees.month;
             });

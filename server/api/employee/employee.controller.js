@@ -19,6 +19,13 @@ var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', '�
 
 // Get list of things
 exports.index = function(req, res) {
+    console.log(req.params.month, req.params.year);
+    if (!req.params.month) {
+        req.params.month = new Date().getMonth() + 1;
+    }
+    if (!req.params.year) {
+        req.params.year = new Date().getFullYear();
+    }
     fs.exists(localConfig.REPORTS_FOLDER + 'employees' + req.params.month + '.json', function (exists){
         if (!exists) {
             console.log(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json not exist!');
