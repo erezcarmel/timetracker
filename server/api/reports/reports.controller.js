@@ -10,26 +10,26 @@ var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', '�
 
 exports.create = function(req, res) {
     loadData(function() {
-        createReportsFolder(function() {
+        createReportsFolder(req.params.year, req.params.month, function() {
             createReport(req.url.substr(1));
         });
     });
 };
 
 exports.createAll = function(req, res) {
-    loadData(function() {
-        createReportsFolder(function() {
-            createAll();
+    loadData(req.params.year, req.params.month, function() {
+        createReportsFolder(req.params.year, req.params.month, function() {
+            createAll(req.params.year, req.params.month);
         });
     });
 };
 
-function loadData(callback) {
-    fs.exists(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', function (exists){
+function loadData(year, month, callback) {
+    fs.exists(localConfig.REPORTS_FOLDER + year + '/employees' + month + '.json', function (exists){
         if (!exists) {
             console.log('file not found!');
         } else {
-            fs.readFile(localConfig.REPORTS_FOLDER + 'employees' + (new Date().getMonth() + 1) + '.json', 'utf-8', function read(err, data) {
+            fs.readFile(localConfig.REPORTS_FOLDER + year + '/employees' + month + '.json', 'utf-8', function read(err, data) {
                 if (err) {
                     throw err;
                 }
@@ -40,8 +40,8 @@ function loadData(callback) {
     });
 }
 
-function createReport(id) {
-    var workbook = excelbuilder.createWorkbook(localConfig.REPORTS_FOLDER + months[new Date().getMonth()], id + '.xlsx');
+function createReport(id, year, month) {
+    var workbook = excelbuilder.createWorkbook(localConfig.REPORTS_FOLDER + year + '/' + months[month - 1], id + '.xlsx');
     var sheet1 = workbook.createSheet(id, 4, 40);
     var row = 3;
 
@@ -109,10 +109,10 @@ function createReport(id) {
     });
 }
 
-function createAll() {
+function createAll(year, month) {
     for (var employee in employeesData) {
         if (employeesData[employee].data) {
-            createReport(employee);
+            createReport(employee, year, month);
         }
     }
 }
@@ -162,10 +162,10 @@ function calcMonthTotal(data) {
     return hours + ':' + minutes;
 }
 
-function createReportsFolder(callback) {
-    fs.exists(localConfig.REPORTS_FOLDER + months[new Date().getMonth()], function (exists){
+function createReportsFolder(year, month, callback) {
+    fs.exists(localConfig.REPORTS_FOLDER + year + '/' + months[month - 1], function (exists){
         if (!exists) {
-            fs.mkdir(localConfig.REPORTS_FOLDER + months[new Date().getMonth()], function(err, res) {
+            fs.mkdir(localConfig.REPORTS_FOLDER + year + '/' + months[month - 1], function(err, res) {
                 callback()
             });
         } else {

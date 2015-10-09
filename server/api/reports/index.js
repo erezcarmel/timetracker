@@ -5,7 +5,7 @@ var controller = require('./reports.controller');
 
 var router = express.Router();
 
-router.get('/', controller.createAll);
-router.get('/:id', controller.create);
+router.get('/:year/:month', controller.createAll);
+router.get('/:id/:year/:month', controller.create);
 
 module.exports = router;

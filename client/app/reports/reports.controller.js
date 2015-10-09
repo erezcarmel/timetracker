@@ -49,7 +49,7 @@ angular.module('timetrackerApp')
         };
 
         $scope.createReports = function() {
-            $http.get('/api/reports/').success(function() {
+            $http.get('/api/reports/' + $scope.selectedDate.year + '/' + $scope.selectedDate.month).success(function() {
                 console.log('reports created');
             });
         };
