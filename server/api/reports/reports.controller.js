@@ -139,6 +139,10 @@ function getDayTotal(timeIn, timeOut) {
     diff -= hours * 1000 * 60 * 60;
     var minutes = Math.floor(diff / 1000 / 60);
 
+    if (endDate - startDate < 60000) {
+        hours = minutes = 0;
+    }
+
     if (hours < 0) {
         hours = hours + 24;
     }
@@ -150,7 +154,7 @@ function calcMonthTotal(data) {
     var monthTotal = 0;
     if (data) {
         for (var day in data) {
-            monthTotal += data[day].total;
+            monthTotal += typeof(data[day].total) !== 'undefined' ? data[day].total : 0;
         }
     }
     var minutes = parseInt(monthTotal / (1000*60)%60);

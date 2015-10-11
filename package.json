@@ -15,8 +15,7 @@
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
-    "serve-favicon": "~2.0.1",
-    "xlsx": "^0.8.0"
+    "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",
@@ -68,13 +67,11 @@
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
     "msexcel-builder": "0.0.2",
-    "node-xlsx": "^0.5.1",
     "open": "~0.0.4",
     "requirejs": "~2.1.11",
     "should": "~3.3.1",
     "supertest": "~0.11.0",
-    "time-grunt": "~0.3.1",
-    "xlsx": "^0.8.0"
+    "time-grunt": "~0.3.1"
   },
   "engines": {
     "node": ">=0.10.0"
