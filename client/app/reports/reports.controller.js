@@ -45,7 +45,7 @@ angular.module('timetrackerApp')
         };
 
         $scope.showEmployee = function(id) {
-            $location.url('/report?id=' + id);
+            $location.url('/report?id=' + id + '&year=' + $scope.selectedDate.year + '&month=' + $scope.selectedDate.month);
         };
 
         $scope.createReports = function() {

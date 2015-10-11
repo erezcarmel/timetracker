@@ -3,6 +3,10 @@
 angular.module('timetrackerApp')
     .controller('ReportCtrl', function ($scope, $http, $location, $window) {
         $scope.monthTotal = 0;
+        $scope.selectedDate = {
+            month: $location.search().month,
+            year: $location.search().year
+        };
 
         $http.get('/api/employees/' + $location.search().id).success(function(employee) {
             $scope.month = employee.month;
@@ -55,14 +59,12 @@ angular.module('timetrackerApp')
                 hours = (hours < 10) ? '0' + hours : hours;
                 minutes = (minutes < 10) ? '0' + minutes : minutes;
 
-
-
                 $scope.monthTotal = checkNaN(hours, minutes);
             }
         }
 
         $scope.createReport = function(id) {
-            $http.get('/api/reports/' + id).success(function() {
+            $http.get('/api/reports/' + id + '/' + $scope.selectedDate.year + '/' + $scope.selectedDate.month).success(function() {
                 console.log('report created');
             });
         };

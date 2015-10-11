@@ -9,9 +9,9 @@ var employeesData;
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
 
 exports.create = function(req, res) {
-    loadData(function() {
+    loadData(req.params.year, req.params.month, function() {
         createReportsFolder(req.params.year, req.params.month, function() {
-            createReport(req.url.substr(1));
+            createReport(req.params.id, req.params.year, req.params.month);
         });
     });
 };
