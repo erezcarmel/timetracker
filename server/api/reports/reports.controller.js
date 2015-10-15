@@ -7,6 +7,15 @@ var localConfig = require('../../config/local.env.js');
 
 var employeesData;
 var months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+var days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+];
 
 exports.create = function(req, res) {
     loadData(req.params.year, req.params.month, function() {
@@ -52,7 +61,7 @@ function createReport(id, year, month) {
 
     sheet1.merge({col:1, row:1}, {col:4, row:1});
     sheet1.align(1, 1, 'center');
-    sheet1.font(1, 1, {sz:'24', family:'3',bold:'true', iter:'true'});
+    sheet1.font(1, 1, {sz:'24', family:'3', bold:'true', iter:'true'});
     var title = 'סיכום חודש ' + employeesData.month + ', ת.ז. ' + id;
     sheet1.set(1, 1, title);
 
@@ -69,9 +78,14 @@ function createReport(id, year, month) {
     sheet1.set(2, 2, 'יציאה');
     sheet1.set(1, 2, 'סהכ');
 
-    for (var day in employeesData[id].data) {
-        var inTime = employeesData[id].data[day].in;
-        var outTime = employeesData[id].data[day].out;
+    var weekdayCount = -1;
+    var len = new Date(year, month, 0).getDate();
+    for (var day = 1; day <= len; day++) {
+        var inTime = employeesData[id].data[day] ? employeesData[id].data[day].in : false;
+        var outTime = employeesData[id].data[day] ? employeesData[id].data[day].out : false;
+        if (new Date(inTime).getDay() && weekdayCount === -1) {
+            weekdayCount = new Date(inTime).getDay();
+        }
 
         sheet1.align(1, row, 'center');
         sheet1.align(2, row, 'center');
@@ -81,6 +95,13 @@ function createReport(id, year, month) {
         sheet1.font(2, row, {sz:'14', family:'3'});
         sheet1.font(3, row, {sz:'14', family:'3'});
         sheet1.font(4, row, {sz:'14', family:'3', bold:'true'});
+
+        if (weekdayCount === 6) {
+            sheet1.fill(1, row, {type:'solid', bgColor:'767676'});
+            sheet1.fill(2, row, {type:'solid', bgColor:'767676'});
+            sheet1.fill(3, row, {type:'solid', bgColor:'767676'});
+            sheet1.fill(4, row, {type:'solid', bgColor:'767676'});
+        }
 
         sheet1.set(4, row, day);
         if (inTime) {
@@ -93,6 +114,7 @@ function createReport(id, year, month) {
             sheet1.set(1, row, getDayTotal(inTime, outTime));
         }
         row++;
+        weekdayCount = weekdayCount < 6 ? weekdayCount + 1 : 0;
     }
     sheet1.align(1, row, 'center');
     sheet1.font(1, row, {sz:'18', family:'3', bold:'true'});
